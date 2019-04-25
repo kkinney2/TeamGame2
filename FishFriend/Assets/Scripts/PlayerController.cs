@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     bool isHoldingObj = false;
     bool lookingAtPickUp = false;
     GameObject targetPickUp;
+    StateMachine stateMachine;
 
 	// Use this for initialization
 	void Start () {
@@ -15,6 +16,11 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (IsHoldingObj())
+        {
+            
+        }
 
         // Determine if/what pickup is being looked at
         CheckForPickUps();
@@ -26,14 +32,7 @@ public class PlayerController : MonoBehaviour {
             if (Input.GetKeyUp(KeyCode.E))
             {
                 PickUpObject(targetPickUp);
-            }
-        }
-
-        if (holdingObj)
-        {
-            if (Input.GetMouseButton(1))
-            {
-                // Toggle "Aiming" UI
+                stateMachine.ChangeState(new Aiming(this));
             }
         }
 
@@ -61,12 +60,11 @@ public class PlayerController : MonoBehaviour {
     
 }
 
-/*
-public class SampleState : IState
+/*public class SampleState : IState
 {
     OwnerClass owner;
 
-    public void SampleState(OwnerClass newOwner)
+    public SampleState(OwnerClass newOwner)
     {
         this.owner = newOwner;
     }
@@ -92,7 +90,7 @@ public class DefaultPlayer : IState
 {
     PlayerController owner;
 
-    public void Aiming(PlayerController newOwner)
+    public DefaultPlayer(PlayerController newOwner)
     {
         this.owner = newOwner;
     }
@@ -104,7 +102,18 @@ public class DefaultPlayer : IState
 
     public void Execute()
     {
+        // Determine if/what pickup is being looked at
+        CheckForPickUps();
 
+        if (lookingAtPickUp)
+        {
+            // Toggle UI to signify PickUp
+
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                PickUpObject(targetPickUp);
+            }
+        }
     }
 
     public void Exit()
@@ -117,7 +126,7 @@ public class Aiming : IState
 {
     PlayerController owner;
 
-    public void Aiming(PlayerController newOwner)
+    public Aiming(PlayerController newOwner)
     {
         this.owner = newOwner;
     }
@@ -129,13 +138,7 @@ public class Aiming : IState
 
     public void Execute()
     {
-        if (owner.IsHoldingObj())
-        {
-            if (Input.GetMouseButton(1))
-            {
-                // Toggle "Aiming" UI
-            }
-        }
+        
     }
 
     public void Exit()
