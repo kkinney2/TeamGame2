@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    bool holdingObj = false;
+    bool isHoldingObj = false;
     bool lookingAtPickUp = false;
     GameObject targetPickUp;
 
@@ -53,5 +53,93 @@ public class PlayerController : MonoBehaviour {
     {
 
     }
+
+    public bool IsHoldingObj()
+    {
+        return isHoldingObj == true ? true : false;
+    }
     
+}
+
+/*
+public class SampleState : IState
+{
+    OwnerClass owner;
+
+    public void SampleState(OwnerClass newOwner)
+    {
+        this.owner = newOwner;
+    }
+
+    public void Enter()
+    {
+
+    }
+
+    public void Execute()
+    {
+
+    }
+
+    public void Exit()
+    {
+
+    }
+}
+*/
+
+public class DefaultPlayer : IState
+{
+    PlayerController owner;
+
+    public void Aiming(PlayerController newOwner)
+    {
+        this.owner = newOwner;
+    }
+
+    public void Enter()
+    {
+
+    }
+
+    public void Execute()
+    {
+
+    }
+
+    public void Exit()
+    {
+
+    }
+}
+
+public class Aiming : IState
+{
+    PlayerController owner;
+
+    public void Aiming(PlayerController newOwner)
+    {
+        this.owner = newOwner;
+    }
+
+    public void Enter()
+    {
+        
+    }
+
+    public void Execute()
+    {
+        if (owner.IsHoldingObj())
+        {
+            if (Input.GetMouseButton(1))
+            {
+                // Toggle "Aiming" UI
+            }
+        }
+    }
+
+    public void Exit()
+    {
+
+    }
 }
