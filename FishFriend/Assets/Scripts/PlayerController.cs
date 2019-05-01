@@ -22,22 +22,21 @@ public class PlayerController : MonoBehaviour {
 
         StartCoroutine(StateSwitch(stateMachine));
 
-        
-
         animator = GetComponent<Animator>();
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        // <<-----------------------------------------------------------------------------
+        // <<-----------------------------------------------------------------------------**
         // Quits application on Unity defined "Cancel" key(s)
+        // **-------------------------------------------------**
 
         if (Input.GetButtonDown("Cancel"))
         {
             Application.Quit();
         }
-        // ----------------------------------------------------------------------------->>
+        // **----------------------------------------------------------------------------->>
 
 
 
@@ -47,14 +46,15 @@ public class PlayerController : MonoBehaviour {
         // <<HERE AFTER>>
         // Performs overarching player logic
 
-        // <<-----------------------------------------------------------------------------
+        // <<-----------------------------------------------------------------------------**
         // Rotates player to match camera rotation
+        // **----------------------------------------**
         Quaternion rotation = gameObject.transform.rotation;
         rotation.eulerAngles = cameraObj.transform.rotation.eulerAngles;
         rotation.x = 0;
         rotation.z = 0;
         transform.rotation = rotation;
-        // ----------------------------------------------------------------------------->>
+        // **----------------------------------------------------------------------------->>
 
 
         if (IsHoldingObj())
@@ -63,14 +63,16 @@ public class PlayerController : MonoBehaviour {
         }
 	}
 
-    // TODO: Fix State Switching
     IEnumerator StateSwitch(StateMachine stateMachine)
     {
         for(;;)
         {
             string currentState = stateMachine.getCurrentState().ToString();
-            // <<-----------------------------------------------------------------------------
+            // <<-----------------------------------------------------------------------------**
             // Enter "Aiming" state on right click press
+            // Else: Exit "Aiming" and Enter "DefaultPlayer"
+            // **---------------------------------------------**
+
             if (Input.GetMouseButton(1) == true)
             {
                 if ( currentState != "Aiming")
@@ -79,15 +81,13 @@ public class PlayerController : MonoBehaviour {
                     camController.SetCameraPos(2, new Vector3(1, 1, 0));
                 }
             }
-
-            // Exit "Aiming" state on right click release
-            // Enter "DefaultPlayer" state
             if (Input.GetMouseButton(1) == false && currentState != "DefaultPlayer")
             {
                 stateMachine.ChangeState(new DefaultPlayer(this));
                 camController.ResetCameraPos();
             }
-            // ----------------------------------------------------------------------------->>
+
+            // **----------------------------------------------------------------------------->>
 
             yield return new WaitForSeconds(.1f);
         }

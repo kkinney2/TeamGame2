@@ -48,6 +48,20 @@ public class DefaultPlayer : IState
             }
         }
 
+        Movement();
+    }
+
+    public void Exit()
+    {
+        Debug.Log("Exiting DefaultPlayer State");
+    }
+
+    void Movement()
+    {
+        // <<-----------------------------------------------------------------------------**
+        // Determines Player Speed
+        // **-------------------------------------** 
+
         if (Input.GetButton("Sprint") && controller.isGrounded)
         {
             speed = sprintSpeed;
@@ -61,6 +75,13 @@ public class DefaultPlayer : IState
             speed = moveSpeed;
         }
 
+        // **----------------------------------------------------------------------------->>
+
+
+        // <<-----------------------------------------------------------------------------**
+        // Determines if Player "isGrounded"
+        // **-------------------------------------**
+
         if (controller.isGrounded)
         {
             if (Input.GetButton("Jump"))
@@ -69,29 +90,31 @@ public class DefaultPlayer : IState
             }
         }
 
-        // move direction directly from axes
+        // **----------------------------------------------------------------------------->>
+
+
+        // <<-----------------------------------------------------------------------------**
+        // Generate moveDirection from user input
+        // Calculate user input to local direction
+        // **-------------------------------------**
+
         float moveY = moveDirection.y;
         moveDirection = new Vector3(horizontalMove, 0, verticalMove);
         moveDirection = owner.transform.TransformDirection(moveDirection);
         moveDirection = moveDirection * speed;
         moveDirection.y = moveY;
 
-        // input detected, rotate player to face camera direction
-        if (new Vector3(horizontalMove, 0, verticalMove).magnitude != 0)
-        {
+        // **----------------------------------------------------------------------------->>
 
-        }
 
-        // Apply gravity
+        // <<-----------------------------------------------------------------------------**
+        // Apply gravity and Move Controller
+        // **-------------------------------------**
+
         moveDirection.y = moveDirection.y - (gravity * Time.deltaTime);
-
-        // Move the controller
         controller.Move(moveDirection * Time.deltaTime);
-    }
 
-    public void Exit()
-    {
-        Debug.Log("Exiting DefaultPlayer State");
+        // **----------------------------------------------------------------------------->>
     }
 
     void CheckForPickUps()

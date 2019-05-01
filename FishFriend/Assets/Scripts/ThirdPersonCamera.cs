@@ -29,6 +29,9 @@ public class ThirdPersonCamera : MonoBehaviour
 
     void LateUpdate()
     {
+        // <<-----------------------------------------------------------------------------**
+        // Get input data and clamp 
+        // **---------------------------------------------**
 
         yaw += Input.GetAxis("Mouse X") * mouseSensitivity;
 
@@ -44,11 +47,24 @@ public class ThirdPersonCamera : MonoBehaviour
 
         pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
 
+        // **----------------------------------------------------------------------------->>
+
+
+        // <<-----------------------------------------------------------------------------**
+        // Calculate rotation and apply to camera
+        // **---------------------------------------------**
+
         currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(pitch, yaw), ref rotationSmoothVelocity, acceleration);
 
         transform.eulerAngles = currentRotation;
 
         transform.position = target.position + offset - (transform.forward * distanceFromTarget);
+        /* TODO: Lerp position so that offset changes arent abrupt
+        Vector3 tempNewPos = target.position + offset - (transform.forward * distanceFromTarget);
+        Vector3.Lerp(transform.position, tempNewPos, 0.5f);
+        */
+
+        // **----------------------------------------------------------------------------->>
     }
 
     public void ResetCameraPos()
