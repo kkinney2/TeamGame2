@@ -21,7 +21,9 @@ public class StateMachine
         if (currentState != null)
         {
             currentState.Exit();
-            pastStates[pastStates.Length] = currentState;
+
+            // TODO: Rework PastStates
+            //pastStates[pastStates.Length] = currentState;
         }
 
         currentState = newState;
@@ -41,6 +43,7 @@ public class StateMachine
         else return false;
     }
 
+    // Returns Current State's class name
     public IState getCurrentState()
     {
         return currentState;
