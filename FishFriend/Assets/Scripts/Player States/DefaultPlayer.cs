@@ -14,7 +14,7 @@ public class DefaultPlayer : IState
     public float sprintSpeed = 10f;
 
     private Vector3 moveDirection = Vector3.zero;
-    private CharacterController controller;
+    private CharacterController charController;
     private float speed;
     float horizontalMove;
     float verticalMove;
@@ -27,7 +27,7 @@ public class DefaultPlayer : IState
     public void Enter()
     {
         Debug.Log("Entering DefaultPlayer State");
-        controller = owner.GetComponent<CharacterController>();
+        charController = owner.GetComponent<CharacterController>();
     }
 
     public void Execute()
@@ -62,11 +62,11 @@ public class DefaultPlayer : IState
         // Determines Player Speed
         // **-------------------------------------** 
 
-        if (Input.GetButton("Sprint") && controller.isGrounded)
+        if (Input.GetButton("Sprint") && charController.isGrounded)
         {
             speed = sprintSpeed;
         }
-        else if (speed == sprintSpeed && !controller.isGrounded)
+        else if (speed == sprintSpeed && !charController.isGrounded)
         {
             speed = sprintSpeed;
         }
@@ -82,7 +82,7 @@ public class DefaultPlayer : IState
         // Determines if Player "isGrounded"
         // **-------------------------------------**
 
-        if (controller.isGrounded)
+        if (charController.isGrounded)
         {
             if (Input.GetButton("Jump"))
             {
@@ -112,7 +112,7 @@ public class DefaultPlayer : IState
         // **-------------------------------------**
 
         moveDirection.y = moveDirection.y - (gravity * Time.deltaTime);
-        controller.Move(moveDirection * Time.deltaTime);
+        charController.Move(moveDirection * Time.deltaTime);
 
         // **----------------------------------------------------------------------------->>
     }

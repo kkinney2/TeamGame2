@@ -10,11 +10,14 @@ public class PlayerController : MonoBehaviour {
     StateMachine stateMachine;
     Animator animator;
     ThirdPersonCamera camController;
+    CharacterController charController;
 
     // Use this for initialization
     void Start () {
+
         stateMachine = new StateMachine();
         camController = cameraObj.GetComponent<ThirdPersonCamera>();
+        charController = GetComponent<CharacterController>();
 
         // Give stateMachine a state so that coroutine StateSwitch has something
         // to compare with
@@ -22,23 +25,11 @@ public class PlayerController : MonoBehaviour {
 
         StartCoroutine(StateSwitch(stateMachine));
 
-        animator = GetComponent<Animator>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 	
 	// Update is called once per frame
 	void Update () {
-
-        // <<-----------------------------------------------------------------------------**
-        // Quits application on Unity defined "Cancel" key(s)
-        // **-------------------------------------------------**
-
-        if (Input.GetButtonDown("Cancel"))
-        {
-            Application.Quit();
-        }
-        // **----------------------------------------------------------------------------->>
-
-
 
         // Performs current state's logic
         stateMachine.Update();
@@ -49,11 +40,13 @@ public class PlayerController : MonoBehaviour {
         // <<-----------------------------------------------------------------------------**
         // Rotates player to match camera rotation
         // **----------------------------------------**
+
         Quaternion rotation = gameObject.transform.rotation;
         rotation.eulerAngles = cameraObj.transform.rotation.eulerAngles;
         rotation.x = 0;
         rotation.z = 0;
         transform.rotation = rotation;
+
         // **----------------------------------------------------------------------------->>
 
 
@@ -68,6 +61,7 @@ public class PlayerController : MonoBehaviour {
         for(;;)
         {
             string currentState = stateMachine.getCurrentState().ToString();
+
             // <<-----------------------------------------------------------------------------**
             // Enter "Aiming" state on right click press
             // Else: Exit "Aiming" and Enter "DefaultPlayer"
@@ -78,7 +72,7 @@ public class PlayerController : MonoBehaviour {
                 if ( currentState != "Aiming")
                 {
                     stateMachine.ChangeState(new Aiming(this));
-                    camController.SetCameraPos(2, new Vector3(1, 1, 0));
+                    camController.SetCameraPos(2, new Vector3(0, 2, 0));
                 }
             }
             if (Input.GetMouseButton(1) == false && currentState != "DefaultPlayer")
