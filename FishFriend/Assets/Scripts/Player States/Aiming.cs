@@ -7,7 +7,8 @@ public class Aiming : IState
     public float gravity = 10.0f;
 
     PlayerController owner;
-    private CharacterController charController;
+    CharacterController charController;
+    Camera mainCamera;
 
     public Aiming(PlayerController newOwner)
     {
@@ -17,7 +18,20 @@ public class Aiming : IState
     public void Enter()
     {
         Debug.Log("Entering Aiming State");
+
+        // References camera in scene tagged 'MainCamera'
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.main;
+        }
+        else
+        {
+            Debug.Log("No Main Camera Found");
+        }
+        
         charController = owner.GetComponent<CharacterController>();
+
+        owner.ToggleReticle();
     }
 
     public void Execute()
@@ -31,36 +45,36 @@ public class Aiming : IState
 
         // **----------------------------------------------------------------------------->>
 
+
         // <<-----------------------------------------------------------------------------**
-        // Raycast for aiming
+        // Throw Stuff
         // **----------------------------------------**
 
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-
-        RaycastHit hitInfo;
-
-        if (Physics.Raycast(ray, out hitInfo))
+        if (Input.GetMouseButtonDown(0) && owner.IsHoldingObj())
         {
-            Debug.Log("Ray hit: " + hitInfo.collider.gameObject.name);
-
-            // TODO: Obj following camera for spawning
-            // Spawn the Obj
-            if (!objSpawned)
-            {
-                spawnedObj = objToSpawn;
-                SpawnObj(spawnedObj, hitInfo.point);
-                objSpawned = true;
-            }
-            else
-            {
-                spawnedObj.transform.position = hitInfo.point;
-            }
+            Throw();
         }
+
         // **----------------------------------------------------------------------------->>
     }
 
     public void Exit()
     {
         Debug.Log("Exiting Aiming State");
+
+        owner.ToggleReticle();
+    }
+
+    void Throw()
+    {
+        GameObject heldObj = owner.GetHeldObj();
+
+        Vector3 targetDir = owner.Reticle.gameObject.transform.position - heldObj.transform.position;
+        targetDir = targetDir.normalized;
+
+        Rigidbody objRb = heldObj.GetComponent<Rigidbody>();
+
+        objRb.AddRelativeForce(targetDir);
+
     }
 }

@@ -4,20 +4,39 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    public GameObject cameraObj;
+    public GameObject CameraObj;
+    public GameObject Reticle;
+    public GameObject Probe;
+    public GameObject PickUpPosRef;
+    public GameObject UI_Toggle;
 
     bool isHoldingObj = false;
     StateMachine stateMachine;
     Animator animator;
     ThirdPersonCamera camController;
     CharacterController charController;
+    ProbeBehavior probeController;
+    GameObject heldObj;
 
     // Use this for initialization
     void Start () {
 
         stateMachine = new StateMachine();
-        camController = cameraObj.GetComponent<ThirdPersonCamera>();
+
+        if (CameraObj != null)
+        {
+            camController = CameraObj.GetComponent<ThirdPersonCamera>();
+        }
+        else Debug.Log("Missing CameraObj");
+
+        if (Probe != null)
+        {
+            probeController = Probe.GetComponent<ProbeBehavior>();
+        }
+        else Debug.Log("Missing Probe");
+
         charController = GetComponent<CharacterController>();
+
 
         // Give stateMachine a state so that coroutine StateSwitch has something
         // to compare with
@@ -42,17 +61,37 @@ public class PlayerController : MonoBehaviour {
         // **----------------------------------------**
 
         Quaternion rotation = gameObject.transform.rotation;
-        rotation.eulerAngles = cameraObj.transform.rotation.eulerAngles;
+        rotation.eulerAngles = CameraObj.transform.rotation.eulerAngles;
         rotation.x = 0;
         rotation.z = 0;
         transform.rotation = rotation;
 
         // **----------------------------------------------------------------------------->>
 
+        if(probeController.GetObj() != null && !IsHoldingObj())
+        {
+            if (!UI_Toggle.gameObject.activeSelf)
+            {
+                UI_Toggle.gameObject.SetActive(true);
+            }
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                heldObj = probeController.GetObj();
+                isHoldingObj = true;
+                UI_Toggle.gameObject.SetActive(false);
+            }
+
+        }
+
+        if (probeController.GetObj() == null)
+        {
+            UI_Toggle.gameObject.SetActive(false);
+        }
 
         if (IsHoldingObj())
         {
-            
+            heldObj.transform.position = PickUpPosRef.transform.position;
         }
 	}
 
@@ -87,9 +126,24 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    public void ToggleReticle()
+    {
+        Reticle.gameObject.SetActive(!Reticle.gameObject.activeSelf);
+    }
+
+    public void PickUpObj()
+    {
+
+    }
+
     public bool IsHoldingObj()
     {
         return isHoldingObj == true ? true : false;
+    }
+
+    public GameObject GetHeldObj()
+    {
+        return heldObj;
     }
 
     /*
