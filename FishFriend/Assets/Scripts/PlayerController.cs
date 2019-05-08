@@ -121,6 +121,7 @@ public class PlayerController : MonoBehaviour {
             // <<-----------------------------------------------------------------------------**
             // Enter "Aiming" state on right click press
             // Else: Exit "Aiming" and Enter "DefaultPlayer"
+            // Bool Controls if Camera Lerps Positions between states
             // **---------------------------------------------**
 
             if (Input.GetMouseButton(1) == true)
@@ -177,18 +178,6 @@ public class PlayerController : MonoBehaviour {
     {
         return heldObj;
     }
-
-    /*
-    public void SetCameraPosition(float distToTarget, Vector3 newOffset)
-    {
-        camController.SetCameraPos(distToTarget, newOffset);
-    }
-
-    public void ResetCameraPosition()
-    {
-        camController.ResetCameraPos();
-    }
-    */
 }
 
 /*public class SampleState : IState

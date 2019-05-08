@@ -19,7 +19,10 @@ public class Aiming : IState
     {
         Debug.Log("Entering Aiming State");
 
-        // References camera in scene tagged 'MainCamera'
+        // <<-----------------------------------------------------------------------------**
+        // Assigns Camera
+        // **----------------------------------------**
+
         if (mainCamera == null)
         {
             mainCamera = Camera.main;
@@ -28,7 +31,9 @@ public class Aiming : IState
         {
             Debug.Log("No Main Camera Found");
         }
-        
+
+        // **----------------------------------------------------------------------------->>
+
         charController = owner.GetComponent<CharacterController>();
 
         owner.ToggleReticle();
@@ -67,12 +72,22 @@ public class Aiming : IState
 
     void Throw()
     {
+        // <<-----------------------------------------------------------------------------**
+        // Gets Held Obj, Determines Vector to Target, and Normalize that Vector
+        // **----------------------------------------**
+
         GameObject heldObj = owner.GetHeldObj();
 
         Vector3 targetDir = (owner.Reticle.transform.position + owner.AdditionalThrowHeight) - heldObj.transform.position;
         //targetDir = targetDir.normalized;
         Vector3.Normalize(targetDir);
 
+        // **----------------------------------------------------------------------------->>
+
+
+        // <<-----------------------------------------------------------------------------**
+        // Prepares Held Obj for Throwing and Throws Obj
+        // **----------------------------------------**
         PickupBehavior objPickup = heldObj.GetComponent<PickupBehavior>();
 
         owner.IsHoldingObj(false);
@@ -82,6 +97,8 @@ public class Aiming : IState
         objPickup.ToggleBeingHeld();
 
         objPickup.Throw(targetDir, owner.throwPower);
+
+        // **----------------------------------------------------------------------------->>
 
     }
 }

@@ -14,6 +14,11 @@ public class PickupBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        // <<-----------------------------------------------------------------------------**
+        // Switches Rigidbody Constraints based on bool "isHeld"
+        // **----------------------------------------**
+
         if (isHeld)
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
@@ -23,7 +28,9 @@ public class PickupBehavior : MonoBehaviour {
             rb.constraints = RigidbodyConstraints.None;
 
         }
-	}
+
+        // **----------------------------------------------------------------------------->>
+    }
 
     public void ToggleBeingHeld()
     {
