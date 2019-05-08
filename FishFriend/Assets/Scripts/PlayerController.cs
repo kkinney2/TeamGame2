@@ -27,14 +27,13 @@ public class PlayerController : MonoBehaviour {
         {
             camController = CameraObj.GetComponent<ThirdPersonCamera>();
         }
-        else Debug.Log("Missing CameraObj");
-
-        if (Probe != null)
+        else
         {
-            probeController = Probe.GetComponent<ProbeBehavior>();
+            camController = Camera.main.GetComponent<ThirdPersonCamera>();
         }
-        else Debug.Log("Missing Probe");
 
+        
+        probeController = Probe.GetComponent<ProbeBehavior>();
         charController = GetComponent<CharacterController>();
 
 
@@ -60,15 +59,23 @@ public class PlayerController : MonoBehaviour {
         // Rotates player to match camera rotation
         // **----------------------------------------**
 
-        Quaternion rotation = gameObject.transform.rotation;
-        rotation.eulerAngles = CameraObj.transform.rotation.eulerAngles;
-        rotation.x = 0;
-        rotation.z = 0;
-        transform.rotation = rotation;
+        if (!Input.GetMouseButton(2))
+        {
+            Quaternion rotation = gameObject.transform.rotation;
+            rotation.eulerAngles = CameraObj.transform.rotation.eulerAngles;
+            rotation.x = 0;
+            rotation.z = 0;
+            transform.rotation = rotation;
+        }
 
         // **----------------------------------------------------------------------------->>
 
-        if(probeController.GetObj() != null && !IsHoldingObj())
+
+        // <<-----------------------------------------------------------------------------**
+        // Pickup Section
+        // **----------------------------------------**
+
+        if (probeController.GetObj() != null && !IsHoldingObj())
         {
             if (!UI_Toggle.gameObject.activeSelf)
             {
@@ -81,10 +88,11 @@ public class PlayerController : MonoBehaviour {
                 isHoldingObj = true;
                 UI_Toggle.gameObject.SetActive(false);
             }
-
         }
 
-        if (probeController.GetObj() == null)
+        // Makes sure Pickup UI is turned off when there
+        // is no object to pickup
+        if (probeController.GetObj() == null || IsHoldingObj())
         {
             UI_Toggle.gameObject.SetActive(false);
         }
@@ -93,7 +101,9 @@ public class PlayerController : MonoBehaviour {
         {
             heldObj.transform.position = PickUpPosRef.transform.position;
         }
-	}
+
+        // **----------------------------------------------------------------------------->>
+    }
 
     IEnumerator StateSwitch(StateMachine stateMachine)
     {
@@ -111,7 +121,7 @@ public class PlayerController : MonoBehaviour {
                 if ( currentState != "Aiming")
                 {
                     stateMachine.ChangeState(new Aiming(this));
-                    camController.SetCameraPos(2, new Vector3(0, 2, 0));
+                    camController.SetTargetCameraPos(2, new Vector3(0, 2, 0));
                 }
             }
             if (Input.GetMouseButton(1) == false && currentState != "DefaultPlayer")
@@ -129,11 +139,6 @@ public class PlayerController : MonoBehaviour {
     public void ToggleReticle()
     {
         Reticle.gameObject.SetActive(!Reticle.gameObject.activeSelf);
-    }
-
-    public void PickUpObj()
-    {
-
     }
 
     public bool IsHoldingObj()

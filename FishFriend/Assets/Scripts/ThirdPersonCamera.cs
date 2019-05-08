@@ -69,13 +69,48 @@ public class ThirdPersonCamera : MonoBehaviour
 
     public void ResetCameraPos()
     {
-        SetCameraPos(5, new Vector3(0, 1, 0));
+        SetTargetCameraPos(3, new Vector3(0, 1.5f, 0));
     }
 
     public void SetCameraPos(float distToTarget, Vector3 newOffset)
     {
         distanceFromTarget = distToTarget;
         offset = newOffset;
+    }
+
+    public void SetTargetCameraPos(float distToTarget, Vector3 newOffset)
+    {
+        StartCoroutine(LerpCamera(distToTarget, newOffset));
+    }
+
+    IEnumerator LerpCamera(float newDistToTarget, Vector3 newOffset)
+    {
+        StopCoroutine("LerpCamera");
+        float t = 0;
+        float tempDist;
+        Vector3 tempOffset;
+        while (true)
+        {
+            tempDist = Mathf.Lerp(distanceFromTarget, newDistToTarget, t);
+            tempOffset = new Vector3
+                (
+                    Mathf.Lerp(offset.x, newOffset.x, t),
+                    Mathf.Lerp(offset.y, newOffset.y, t),
+                    Mathf.Lerp(offset.z, newOffset.z, t)
+                );
+
+            t += 0.1f;
+            if (t == 1.1f)
+            {
+                t = 0;
+                break;
+            }
+
+            SetCameraPos(tempDist, tempOffset );
+
+            yield return new WaitForSeconds(0.05f);
+        }
+        yield break;
     }
 }
    

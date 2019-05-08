@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ProbeBehavior : MonoBehaviour {
 
-    public PlayerController owner;
-
     GameObject closestObj;
 
     private void OnCollisionEnter(Collision collision)
