@@ -701,7 +701,7 @@ MeshCollider:
   m_GameObject: {fileID: 959666579}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -1285,6 +1285,9 @@ MonoBehaviour:
   Probe: {fileID: 1196594301}
   PickUpPosRef: {fileID: 1840167281}
   UI_Toggle: {fileID: 192370386}
+  throwPower: 3
+  LerpCamera: 0
+  AdditionalThrowHeight: {x: 0, y: 0, z: 0}
 --- !u!136 &1985609024
 CapsuleCollider:
   m_ObjectHideFlags: 0

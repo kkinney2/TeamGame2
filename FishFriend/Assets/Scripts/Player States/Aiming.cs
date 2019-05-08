@@ -69,12 +69,19 @@ public class Aiming : IState
     {
         GameObject heldObj = owner.GetHeldObj();
 
-        Vector3 targetDir = owner.Reticle.gameObject.transform.position - heldObj.transform.position;
-        targetDir = targetDir.normalized;
+        Vector3 targetDir = (owner.Reticle.transform.position + owner.AdditionalThrowHeight) - heldObj.transform.position;
+        //targetDir = targetDir.normalized;
+        Vector3.Normalize(targetDir);
 
-        Rigidbody objRb = heldObj.GetComponent<Rigidbody>();
+        PickupBehavior objPickup = heldObj.GetComponent<PickupBehavior>();
 
-        objRb.AddRelativeForce(targetDir);
+        owner.IsHoldingObj(false);
+        // De-child's the held obj
+        heldObj.transform.SetParent(null);
+        // Unlocks the rotation and position
+        objPickup.ToggleBeingHeld();
+
+        objPickup.Throw(targetDir, owner.throwPower);
 
     }
 }

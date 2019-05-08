@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour {
     public GameObject Probe;
     public GameObject PickUpPosRef;
     public GameObject UI_Toggle;
+    public float throwPower;
+    public bool LerpCamera = false;
+    public Vector3 AdditionalThrowHeight;
 
     bool isHoldingObj = false;
     StateMachine stateMachine;
@@ -85,7 +88,7 @@ public class PlayerController : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 heldObj = probeController.GetObj();
-                heldObj.transform.parent = gameObject.transform;
+                heldObj.transform.SetParent(gameObject.transform);
                 // When thrown set:
                 // heldObj.transform.parent = null;
                 heldObj.GetComponent<PickupBehavior>().ToggleBeingHeld();
@@ -125,14 +128,27 @@ public class PlayerController : MonoBehaviour {
                 if ( currentState != "Aiming")
                 {
                     stateMachine.ChangeState(new Aiming(this));
-                    camController.SetTargetCameraPos(2, new Vector3(0, 2, 0));
+
+                    // TODO: Hardcoded camera pos values
+                    if (LerpCamera)
+                    {
+                        camController.SetTargetCameraPos(2, new Vector3(0, 2, 0));
+                    }
+                    else camController.SetCameraPos(2, new Vector3(0, 2, 0));
+
                     Debug.Log("StateMachine: Right Mouse Pressed");
                 }
             }
             if (Input.GetMouseButton(1) == false && currentState != "DefaultPlayer")
             {
                 stateMachine.ChangeState(new DefaultPlayer(this));
-                camController.ResetCameraPos();
+
+                if (LerpCamera)
+                {
+                    camController.SetTargetCameraPos(3, new Vector3(0, 1.5f, 0));
+                }
+                else camController.SetCameraPos(3, new Vector3(0, 1.5f, 0));
+               
                 Debug.Log("StateMachine: Right Mouse Released");
             }
 
@@ -145,6 +161,11 @@ public class PlayerController : MonoBehaviour {
     public void ToggleReticle()
     {
         Reticle.gameObject.SetActive(!Reticle.gameObject.activeSelf);
+    }
+
+    public void IsHoldingObj(bool newState)
+    {
+        isHoldingObj = newState;
     }
 
     public bool IsHoldingObj()

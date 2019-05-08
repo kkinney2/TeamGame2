@@ -59,17 +59,13 @@ public class ThirdPersonCamera : MonoBehaviour
         transform.eulerAngles = currentRotation;
 
         transform.position = target.position + offset - (transform.forward * distanceFromTarget);
-        /* TODO: Lerp position so that offset changes arent abrupt
-        Vector3 tempNewPos = target.position + offset - (transform.forward * distanceFromTarget);
-        Vector3.Lerp(transform.position, tempNewPos, 0.5f);
-        */
 
         // **----------------------------------------------------------------------------->>
     }
 
     public void ResetCameraPos()
     {
-        SetTargetCameraPos(3, new Vector3(0, 1.5f, 0));
+        SetCameraPos(3, new Vector3(0, 1.5f, 0));
     }
 
     public void SetCameraPos(float distToTarget, Vector3 newOffset)
@@ -106,8 +102,10 @@ public class ThirdPersonCamera : MonoBehaviour
                 break;
             }
 
+            /* TODO: Debug Camera Lerping 
             Debug.Log("TempDist: " + tempDist);
             Debug.Log("TempOffset: " + tempOffset);
+            */
 
             SetCameraPos(tempDist, tempOffset );
 

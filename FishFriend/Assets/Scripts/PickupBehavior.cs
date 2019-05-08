@@ -16,18 +16,12 @@ public class PickupBehavior : MonoBehaviour {
 	void Update () {
         if (isHeld)
         {
-            rb.useGravity = false;
             rb.constraints = RigidbodyConstraints.FreezeAll;
-            /*// TODO: Frozen rotation is hardcoded
-            transform.rotation = Quaternion.identity;
-            transform.Rotate(-90, 0, 0);
-            rb.freezeRotation = true;*/
         }
         else
         {
-            /*rb.useGravity = true;
             rb.constraints = RigidbodyConstraints.None;
-            rb.freezeRotation = false;*/
+
         }
 	}
 
@@ -40,7 +34,7 @@ public class PickupBehavior : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Probe"))
         {
-            other.GetComponent<ProbeBehavior>().SetObj(this.gameObject);
+            other.GetComponent<ProbeBehavior>().SetObj(gameObject);
             Debug.Log(gameObject.name + " told Probe is Pickup");
         }
     }
@@ -51,5 +45,10 @@ public class PickupBehavior : MonoBehaviour {
         {
             other.GetComponent<ProbeBehavior>().SetObj(null);
         }
+    }
+
+    public void Throw(Vector3 direction, float power)
+    {
+        rb.AddForce(direction * power, ForceMode.Impulse/*Or ForceMode.ChangeVelocity*/);
     }
 }
