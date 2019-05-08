@@ -91,20 +91,23 @@ public class ThirdPersonCamera : MonoBehaviour
         Vector3 tempOffset;
         while (true)
         {
-            tempDist = Mathf.Lerp(distanceFromTarget, newDistToTarget, t);
+            tempDist = Mathf.Round(Mathf.Lerp(distanceFromTarget * 1000f, newDistToTarget * 1000f, t)) / 1000f;
             tempOffset = new Vector3
                 (
-                    Mathf.Lerp(offset.x, newOffset.x, t),
-                    Mathf.Lerp(offset.y, newOffset.y, t),
-                    Mathf.Lerp(offset.z, newOffset.z, t)
+                    Mathf.Round(Mathf.Lerp(offset.x * 1000f, newOffset.x * 1000f, t)) / 1000f,
+                    Mathf.Round(Mathf.Lerp(offset.y * 1000f, newOffset.y * 1000f, t)) / 1000f,
+                    Mathf.Round(Mathf.Lerp(offset.z * 1000f, newOffset.z * 1000f, t)) / 1000f
                 );
 
-            t += 0.1f;
-            if (t == 1.1f)
+            t += 0.01f;
+            if (t >= 1f)
             {
                 t = 0;
                 break;
             }
+
+            Debug.Log("TempDist: " + tempDist);
+            Debug.Log("TempOffset: " + tempOffset);
 
             SetCameraPos(tempDist, tempOffset );
 

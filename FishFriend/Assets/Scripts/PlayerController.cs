@@ -85,6 +85,10 @@ public class PlayerController : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 heldObj = probeController.GetObj();
+                heldObj.transform.parent = gameObject.transform;
+                // When thrown set:
+                // heldObj.transform.parent = null;
+                heldObj.GetComponent<PickupBehavior>().ToggleBeingHeld();
                 isHoldingObj = true;
                 UI_Toggle.gameObject.SetActive(false);
             }
@@ -122,12 +126,14 @@ public class PlayerController : MonoBehaviour {
                 {
                     stateMachine.ChangeState(new Aiming(this));
                     camController.SetTargetCameraPos(2, new Vector3(0, 2, 0));
+                    Debug.Log("StateMachine: Right Mouse Pressed");
                 }
             }
             if (Input.GetMouseButton(1) == false && currentState != "DefaultPlayer")
             {
                 stateMachine.ChangeState(new DefaultPlayer(this));
                 camController.ResetCameraPos();
+                Debug.Log("StateMachine: Right Mouse Released");
             }
 
             // **----------------------------------------------------------------------------->>

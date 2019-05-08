@@ -4,24 +4,16 @@ using UnityEngine;
 
 public class ProbeBehavior : MonoBehaviour {
 
-    GameObject closestObj;
+    GameObject obj;
 
-    private void OnCollisionEnter(Collision collision)
+    public void SetObj(GameObject temp)
     {
-        if (collision.gameObject.CompareTag("Pickup"))
-        {
-            closestObj = collision.gameObject;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        closestObj = null;
+        obj = temp;
     }
 
     public GameObject GetObj()
     {
-        return closestObj;
+        return obj;
     }
 
 }
