@@ -140,9 +140,9 @@ public class PlayerController : MonoBehaviour {
                     // TODO: Hardcoded camera pos values
                     if (LerpCamera)
                     {
-                        camController.SetTargetCameraPos(4, new Vector3(0, 6, 0));
+                        camController.SetTargetCameraPos(2, new Vector3(0, 2, 0));
                     }
-                    else camController.SetCameraPos(4, new Vector3(0, 6, 0));
+                    else camController.SetCameraPos(2, new Vector3(0, 2, 0));
 
                     Debug.Log("StateMachine: Right Mouse Pressed");
                 }
@@ -154,9 +154,9 @@ public class PlayerController : MonoBehaviour {
 
                 if (LerpCamera)
                 {
-                    camController.SetTargetCameraPos(5, new Vector3(0, 5f, 0));
+                    camController.SetTargetCameraPos(3, new Vector3(0, 1.5f, 0));
                 }
-                else camController.SetCameraPos(5, new Vector3(0, 5f, 0));
+                else camController.SetCameraPos(3, new Vector3(0, 1.5f, 0));
                
                 Debug.Log("StateMachine: Right Mouse Released");
             }
