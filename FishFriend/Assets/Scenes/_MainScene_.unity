@@ -736,7 +736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 10
-  target: {fileID: 1985609027}
+  target: {fileID: 1891935532}
   offset: {x: 0, y: 1.5, z: 0}
   distanceFromTarget: 3
   pitchMinMax: {x: -30, y: 85}
@@ -1197,6 +1197,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1927905755378544, guid: 98d78ffe51486da498f52b086edc91f7,
     type: 2}
   m_PrefabInternal: {fileID: 1393334209}
+--- !u!4 &1891935532 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4268218401708196, guid: d0fb26047f7c99245ac8b04a831dcda6,
+    type: 2}
+  m_PrefabInternal: {fileID: 19816031}
 --- !u!1 &1912662345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,8 +1316,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f58e6fc2603cfc45a09a26efa3babfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1985609027 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4420191822529646, guid: 98d78ffe51486da498f52b086edc91f7,
-    type: 2}
-  m_PrefabInternal: {fileID: 1393334209}
