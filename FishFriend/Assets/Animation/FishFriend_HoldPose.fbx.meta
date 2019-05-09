@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0d480ecae9b88774db4c675fb36312f9
+guid: 51cc6a695fa54eb4dbb5ab8f86dcb470
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -214,7 +214,7 @@ ModelImporter:
     4300000: CL_Fish_Friend_MK2_1_SeamsColor1
     4300002: polySurface1
     4300004: polySurface2
-    7400000: Idle
+    7400000: HoldPose
     9500000: //RootNode
     13700000: CL_Fish_Friend_MK2_1_SeamsColor1
   externalObjects: {}
@@ -246,17 +246,17 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
-      takeName: Idle
+      name: HoldPose
+      takeName: HoldPose
       firstFrame: 1
-      lastFrame: 40
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -269,8 +269,210 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
+      transformMask:
+      - path: 
+        weight: 1
+      - path: CL_Fish_Friend_MK2_1_SeamsColor1
+        weight: 1
+      - path: Main_controller
+        weight: 1
+      - path: Main_controller/crouch_controller
+        weight: 1
+      - path: Main_controller/crouch_controller/l_shoulder_controller
+        weight: 1
+      - path: Main_controller/crouch_controller/l_shoulder_controller/l_elbow_controller
+        weight: 1
+      - path: Main_controller/crouch_controller/l_shoulder_controller/l_elbow_controller/l_wrist_controller
+        weight: 1
+      - path: Main_controller/crouch_controller/mouth_controller
+        weight: 1
+      - path: Main_controller/crouch_controller/r_shoulder_controller
+        weight: 1
+      - path: Main_controller/crouch_controller/r_shoulder_controller/r_elbow_controller
+        weight: 1
+      - path: Main_controller/crouch_controller/r_shoulder_controller/r_elbow_controller/r_wrist_controller
+        weight: 1
+      - path: Main_controller/crouch_controller/spine_controller_1
+        weight: 1
+      - path: Main_controller/crouch_controller/spine_controller_2
+        weight: 1
+      - path: Main_controller/crouch_controller/spine_controller_3
+        weight: 1
+      - path: Main_controller/crouch_controller/tail_controller
+        weight: 1
+      - path: Main_controller/l_foot_controller
+        weight: 1
+      - path: Main_controller/l_foot_controller/l_ankle_controller
+        weight: 1
+      - path: Main_controller/l_foot_controller/l_knee_controller
+        weight: 1
+      - path: Main_controller/l_foot_controller/l_leg_ik
+        weight: 1
+      - path: Main_controller/r_foot_controller
+        weight: 1
+      - path: Main_controller/r_foot_controller/r_ankle_controller
+        weight: 1
+      - path: Main_controller/r_foot_controller/r_knee_controller
+        weight: 1
+      - path: Main_controller/r_foot_controller/r_leg_ik
+        weight: 1
+      - path: pSphere3
+        weight: 1
+      - path: pSphere3/polySurface1
+        weight: 1
+      - path: pSphere3/polySurface2
+        weight: 1
+      - path: root
+        weight: 1
+      - path: root/fin_1_bottom
+        weight: 1
+      - path: root/fin_1_bottom/fin_1_top
+        weight: 1
+      - path: root/fin_2_bottom
+        weight: 1
+      - path: root/fin_2_bottom/fin_2_top
+        weight: 1
+      - path: root/fin_3_bottom
+        weight: 1
+      - path: root/fin_3_bottom/fin_3_mid
+        weight: 1
+      - path: root/fin_3_bottom/fin_3_mid/fin_3_top
+        weight: 1
+      - path: root/jaw_bottom_1
+        weight: 1
+      - path: root/jaw_bottom_1/jaw_bottom_2
+        weight: 1
+      - path: root/jaw_bottom_1/jaw_bottom_2/jaw_bottom_3
+        weight: 1
+      - path: root/jaw_top_1
+        weight: 1
+      - path: root/jaw_top_1/jaw_top_2
+        weight: 1
+      - path: root/l_hip
+        weight: 1
+      - path: root/l_hip/l_knee
+        weight: 1
+      - path: root/l_hip/l_knee/l_ankle
+        weight: 1
+      - path: root/l_hip/l_knee/l_ankle/l_foot
+        weight: 1
+      - path: root/l_hip/l_knee/l_ankle/l_foot/l_toes
+        weight: 1
+      - path: root/l_shoulder
+        weight: 1
+      - path: root/l_shoulder/l_arm
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_index_1
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_index_1/l_index_2
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_index_1/l_index_2/l_index_3
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_index_1/l_index_2/l_index_3/l_index_4
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_middle_1
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_middle_1/l_middle_2
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_middle_1/l_middle_2/l_middle_3
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_middle_1/l_middle_2/l_middle_3/l_middle_4
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_pinky_1
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_pinky_1/l_pinky_2
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_pinky_1/l_pinky_2/l_pinky_3
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_pinky_1/l_pinky_2/l_pinky_3/l_pinky_4
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_ring_1
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_ring_1/l_ring_2
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_ring_1/l_ring_2/l_ring_3
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_ring_1/l_ring_2/l_ring_3/l_ring_4
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_thumb_1
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_thumb_1/l_thumb_2
+        weight: 1
+      - path: root/l_shoulder/l_arm/l_wrist/l_thumb_1/l_thumb_2/l_thumb_3
+        weight: 1
+      - path: root/r_hip
+        weight: 1
+      - path: root/r_hip/r_knee
+        weight: 1
+      - path: root/r_hip/r_knee/r_ankle
+        weight: 1
+      - path: root/r_hip/r_knee/r_ankle/r_foot
+        weight: 1
+      - path: root/r_hip/r_knee/r_ankle/r_foot/r_toes
+        weight: 1
+      - path: root/r_shoulder
+        weight: 1
+      - path: root/r_shoulder/r_arm
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_index_1
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_index_1/r_index_2
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_index_1/r_index_2/r_index_3
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_index_1/r_index_2/r_index_3/r_index_4
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_middle_1
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_middle_1/r_middle_2
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_middle_1/r_middle_2/r_middle_3
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_middle_1/r_middle_2/r_middle_3/r_middle_4
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_pinky_1
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_pinky_1/r_pinky_2
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_pinky_1/r_pinky_2/r_pinky_3
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_pinky_1/r_pinky_2/r_pinky_3/r_pinky_4
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_ring_1
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_ring_1/r_ring_2
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_ring_1/r_ring_2/r_ring_3
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_ring_1/r_ring_2/r_ring_3/r_ring_4
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_thumb_1
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_thumb_1/r_thumb_2
+        weight: 1
+      - path: root/r_shoulder/r_arm/r_wrist/r_thumb_1/r_thumb_2/r_thumb_3
+        weight: 1
+      - path: root/tail_1
+        weight: 1
+      - path: root/tail_1/tail_2
+        weight: 1
+      - path: root/tail_1/tail_2/tail_3
+        weight: 1
+      - path: root/tail_1/tail_2/tail_3/tail_4
+        weight: 1
+      - path: root/tail_1/tail_2/tail_3/tail_4/tailfin_1
+        weight: 1
+      - path: root/tail_1/tail_2/tail_3/tail_4/tailfin_1/tailfin_2
+        weight: 1
+      - path: root/tail_1/tail_2/tail_3/tail_4/tailfin_3
+        weight: 1
+      - path: root/tail_1/tail_2/tail_3/tail_4/tailfin_3/tailfin_4
+        weight: 1
+      maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     isReadable: 1

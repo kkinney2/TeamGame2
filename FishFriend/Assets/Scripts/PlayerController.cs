@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
 
     bool isHoldingObj = false;
     StateMachine stateMachine;
+    StateMachine animMachine;
     Animator animator;
     ThirdPersonCamera camController;
     CharacterController charController;
@@ -38,11 +39,12 @@ public class PlayerController : MonoBehaviour {
         
         probeController = Probe.GetComponent<ProbeBehavior>();
         charController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
 
 
         // Give stateMachine a state so that coroutine StateSwitch has something
         // to compare with
-        stateMachine.ChangeState(new DefaultPlayer(this));
+        stateMachine.ChangeState(new DefaultPlayer(this, animator));
 
         StartCoroutine(StateSwitch(stateMachine));
 
@@ -87,6 +89,7 @@ public class PlayerController : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.E))
             {
+                animator.SetBool("shouldPickup", true);
                 heldObj = probeController.GetObj();
                 heldObj.transform.SetParent(gameObject.transform);
                 // When thrown set:
@@ -94,6 +97,8 @@ public class PlayerController : MonoBehaviour {
                 heldObj.GetComponent<PickupBehavior>().ToggleBeingHeld();
                 isHoldingObj = true;
                 UI_Toggle.gameObject.SetActive(false);
+                
+                animator.SetBool("shouldPickup", false);
             }
         }
 
@@ -107,6 +112,7 @@ public class PlayerController : MonoBehaviour {
         if (IsHoldingObj())
         {
             heldObj.transform.position = PickUpPosRef.transform.position;
+            animator.SetBool("isHolding", true);
         }
 
         // **----------------------------------------------------------------------------->>
@@ -128,27 +134,29 @@ public class PlayerController : MonoBehaviour {
             {
                 if ( currentState != "Aiming")
                 {
-                    stateMachine.ChangeState(new Aiming(this));
+                    stateMachine.ChangeState(new Aiming(this, animator));
+                    animator.SetBool("isAiming", true);
 
                     // TODO: Hardcoded camera pos values
                     if (LerpCamera)
                     {
-                        camController.SetTargetCameraPos(2, new Vector3(0, 2, 0));
+                        camController.SetTargetCameraPos(4, new Vector3(0, 6, 0));
                     }
-                    else camController.SetCameraPos(2, new Vector3(0, 2, 0));
+                    else camController.SetCameraPos(4, new Vector3(0, 6, 0));
 
                     Debug.Log("StateMachine: Right Mouse Pressed");
                 }
             }
             if (Input.GetMouseButton(1) == false && currentState != "DefaultPlayer")
             {
-                stateMachine.ChangeState(new DefaultPlayer(this));
+                stateMachine.ChangeState(new DefaultPlayer(this, animator));
+                animator.SetBool("isAiming", false);
 
                 if (LerpCamera)
                 {
-                    camController.SetTargetCameraPos(3, new Vector3(0, 1.5f, 0));
+                    camController.SetTargetCameraPos(5, new Vector3(0, 5f, 0));
                 }
-                else camController.SetCameraPos(3, new Vector3(0, 1.5f, 0));
+                else camController.SetCameraPos(5, new Vector3(0, 5f, 0));
                
                 Debug.Log("StateMachine: Right Mouse Released");
             }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class DefaultPlayer : IState
 {
     PlayerController owner;
+    Animator animator;
     bool lookingAtPickUp = false;
     GameObject targetPickUp;
 
@@ -19,9 +20,10 @@ public class DefaultPlayer : IState
     float horizontalMove;
     float verticalMove;
 
-    public DefaultPlayer(PlayerController newOwner)
+    public DefaultPlayer(PlayerController newOwner, Animator newAnimator)
     {
         this.owner = newOwner;
+        animator = newAnimator;
     }
 
     public void Enter()
@@ -32,6 +34,8 @@ public class DefaultPlayer : IState
 
     public void Execute()
     {
+        animator.SetBool("isJumping", false);
+
         horizontalMove = Input.GetAxis("Horizontal");
         verticalMove = Input.GetAxis("Vertical");
 
@@ -87,6 +91,7 @@ public class DefaultPlayer : IState
             if (Input.GetButton("Jump"))
             {
                 moveDirection.y = jumpSpeed;
+                animator.SetBool("isJumping", true);
             }
         }
 

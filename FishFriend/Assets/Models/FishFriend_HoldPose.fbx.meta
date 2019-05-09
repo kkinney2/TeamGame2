@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0d480ecae9b88774db4c675fb36312f9
+guid: 545a2e099c98dc94bae85560cc3b123d
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -214,7 +214,6 @@ ModelImporter:
     4300000: CL_Fish_Friend_MK2_1_SeamsColor1
     4300002: polySurface1
     4300004: polySurface2
-    7400000: Idle
     9500000: //RootNode
     13700000: CL_Fish_Friend_MK2_1_SeamsColor1
   externalObjects: {}
@@ -244,35 +243,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: Idle
-      takeName: Idle
-      firstFrame: 1
-      lastFrame: 40
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []

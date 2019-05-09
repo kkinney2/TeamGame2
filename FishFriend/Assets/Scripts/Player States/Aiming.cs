@@ -7,12 +7,14 @@ public class Aiming : IState
     public float gravity = 10.0f;
 
     PlayerController owner;
+    Animator animator;
     CharacterController charController;
     Camera mainCamera;
 
-    public Aiming(PlayerController newOwner)
+    public Aiming(PlayerController newOwner, Animator newAnimator)
     {
         this.owner = newOwner;
+        animator = newAnimator;
     }
 
     public void Enter()
@@ -41,6 +43,7 @@ public class Aiming : IState
 
     public void Execute()
     {
+        animator.SetBool("isThrowing", false);
         // <<-----------------------------------------------------------------------------**
         // Applies Gravity to Player
         // **----------------------------------------**
@@ -57,7 +60,9 @@ public class Aiming : IState
 
         if (Input.GetMouseButtonDown(0) && owner.IsHoldingObj())
         {
+            animator.SetBool("isThrowing", true);
             Throw();
+            Exit();
         }
 
         // **----------------------------------------------------------------------------->>
