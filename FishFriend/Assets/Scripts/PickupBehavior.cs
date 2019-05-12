@@ -22,6 +22,7 @@ public class PickupBehavior : MonoBehaviour {
         if (isHeld)
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
+            rb.rotation = Quaternion.identity;
         }
         else
         {
