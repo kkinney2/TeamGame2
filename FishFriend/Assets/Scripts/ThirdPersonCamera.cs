@@ -5,9 +5,7 @@ using UnityEngine;
 public class ThirdPersonCamera : MonoBehaviour
 {
 
-    public float mouseSensitivity = 10;
-    public Transform target;
-    public Vector3 offset;
+    public float mouseSensitivity = 10f;
     public float distanceFromTarget = 2;
     public Vector2 pitchMinMax = new Vector2(-30, 85);
     public float acceleration = .12f;
@@ -15,7 +13,12 @@ public class ThirdPersonCamera : MonoBehaviour
     Vector3 rotationSmoothVelocity;
     Vector3 currentRotation;
 
-    Coroutine currentCoroutine;
+    Coroutine currentCamCoroutine_Pos;
+    Coroutine currentCamCoroutine_Target;
+    Transform target;
+    Vector3 targetPos;
+    Vector3 offset;
+    float rounder = 10000f;
 
     float yaw;
     float pitch;
@@ -67,10 +70,10 @@ public class ThirdPersonCamera : MonoBehaviour
 
     public void ResetCameraPos()
     {
-        SetCameraPos(3, new Vector3(0, 1.5f, 0));
+        SetPos(3, new Vector3(0, 1.5f, 0));
     }
 
-    public void SetCameraPos(float distToTarget, Vector3 newOffset)
+    public void SetPos(float distToTarget, Vector3 newOffset)
     {
         distanceFromTarget = distToTarget;
         offset = newOffset;
@@ -78,11 +81,61 @@ public class ThirdPersonCamera : MonoBehaviour
 
     public void SetTargetCameraPos(float distToTarget, Vector3 newOffset)
     {
-        if (currentCoroutine != null)
+        if (currentCamCoroutine_Pos != null)
         {
-            StopCoroutine(currentCoroutine);
+            StopCoroutine(currentCamCoroutine_Pos);
         }
-        currentCoroutine = StartCoroutine(LerpCamera(distToTarget, newOffset));
+        currentCamCoroutine_Pos = StartCoroutine(LerpCamera(distToTarget, newOffset));
+    }
+
+    public void SetCamTarget(Transform tempTrans)
+    {
+        if (currentCamCoroutine_Target != null)
+        {
+            StopCoroutine(currentCamCoroutine_Target);
+        }
+        currentCamCoroutine_Target = StartCoroutine(LerpCamTarget(tempTrans));
+    }
+
+    public void SetTarget(Vector3 tempPos)
+    {
+        targetPos = tempPos;
+    }
+
+    public void SetTarget(Transform tempTrans)
+    {
+        target = tempTrans;
+    }
+
+    IEnumerator LerpCamTarget(Transform newPos)
+    {
+        float m = 0;
+        Vector3 targetPos = newPos.position;
+        Vector3 currentPos = transform.position;
+        Vector3 tempPos;
+
+        while (true)
+        {
+            tempPos = new Vector3
+                (
+                    Mathf.Round(Mathf.Lerp(currentPos.x * rounder, targetPos.x * rounder, m)) / rounder,
+                    Mathf.Round(Mathf.Lerp(currentPos.y * rounder, targetPos.y * rounder, m)) / rounder,
+                    Mathf.Round(Mathf.Lerp(currentPos.z * rounder, targetPos.z * rounder, m)) / rounder
+                );
+
+            m += 0.01f;
+            if (m >= 1f)
+            {
+                m = 0;
+                break;
+            }
+
+            SetTarget(tempPos);
+
+            yield return new WaitForEndOfFrame();
+
+        }
+        yield break;
     }
 
     IEnumerator LerpCamera(float newDistToTarget, Vector3 newOffset)
@@ -91,7 +144,6 @@ public class ThirdPersonCamera : MonoBehaviour
 
         float t = 0;
         float tempDist;
-        float rounder = 10000f;
         Vector3 tempOffset;
         while (true)
         {
@@ -110,12 +162,7 @@ public class ThirdPersonCamera : MonoBehaviour
                 break;
             }
 
-            /* TODO: Debug Camera Lerping 
-            Debug.Log("TempDist: " + tempDist);
-            Debug.Log("TempOffset: " + tempOffset);
-            */
-
-            SetCameraPos(tempDist, tempOffset );
+            SetPos(tempDist, tempOffset );
 
             yield return new WaitForEndOfFrame();
         }

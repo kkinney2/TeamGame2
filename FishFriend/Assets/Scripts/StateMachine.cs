@@ -14,33 +14,16 @@ public interface IState
 public class StateMachine
 {
     IState currentState;
-    IState[] pastStates;
 
     public void ChangeState(IState newState)
     {
         if (currentState != null)
         {
             currentState.Exit();
-
-            // TODO: Rework PastStates
-            //pastStates[pastStates.Length] = currentState;
         }
 
         currentState = newState;
         currentState.Enter();
-    }
-
-    // Bool return allows to check if it is possible or not
-    public bool revertToPreviousState()
-    {
-        if (pastStates.Length > 0)
-        {
-            IState previousState = pastStates[pastStates.Length - 1];
-            pastStates[pastStates.Length - 1] = null;
-            ChangeState(previousState);
-            return true;
-        }
-        else return false;
     }
 
     // Returns Current State's class name

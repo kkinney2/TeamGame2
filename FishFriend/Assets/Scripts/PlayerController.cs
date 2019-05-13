@@ -7,11 +7,19 @@ public class PlayerController : MonoBehaviour {
     public GameObject CameraObj;
     public GameObject Reticle;
     public GameObject Probe;
-    public GameObject PickUpPosRef;
+    public GameObject Ref_PickUpPos;
+    public GameObject Ref_CamDefault;
+    public GameObject Ref_CamAiming;
     public GameObject UI_Toggle;
     public float throwPower;
     public bool LerpCamera = false;
     public Vector3 AdditionalThrowHeight;
+
+    public Vector3 defOffset = new Vector3(0, 0, 0);
+    public float defCamDist = 10f;
+
+    public Vector3 aimingOffset = new Vector3(2, 0, 0);
+    public float camAimingDist = 7f;
 
     bool isHoldingObj = false;
     StateMachine stateMachine;
@@ -37,7 +45,9 @@ public class PlayerController : MonoBehaviour {
             camController = Camera.main.GetComponent<ThirdPersonCamera>();
         }
 
-        camController.target = transform;
+        camController.SetTarget(Ref_CamDefault.transform);
+        //camController.camTargetRef = Ref_CamDefault.transform;
+        //camController.camAimingTargetRef = Ref_CamAiming.transform;
 
         probeController = Probe.GetComponent<ProbeBehavior>();
         charController = GetComponent<CharacterController>();
@@ -113,7 +123,8 @@ public class PlayerController : MonoBehaviour {
 
         if (IsHoldingObj())
         {
-            heldObj.transform.position = PickUpPosRef.transform.position;
+            heldObj.transform.position = Ref_PickUpPos.transform.position;
+            heldObj.transform.rotation = Ref_PickUpPos.transform.rotation;
             animator.SetBool("isHolding", true);
         }
 
@@ -137,13 +148,12 @@ public class PlayerController : MonoBehaviour {
                 //Debug.Log("StateMachine: Right Mouse Pressed");
                 if ( currentState != "Aiming")
                 {
-
-                    // TODO: Hardcoded camera pos values
+                    // TODO: camController.SetCamTarget(Ref_CamAiming.transform.position);
                     if (LerpCamera)
                     {
-                        camController.SetTargetCameraPos(2, new Vector3(0, 2, 0));
+                        camController.SetTargetCameraPos(camAimingDist, aimingOffset);
                     }
-                    else camController.SetCameraPos(2, new Vector3(0, 2, 0));
+                    else camController.SetPos(camAimingDist, aimingOffset);
 
                     stateMachine.ChangeState(new Aiming(this, animator));
                     animator.SetBool("isAiming", true);
@@ -154,14 +164,16 @@ public class PlayerController : MonoBehaviour {
             {
                 if (currentState != "DefaultPlayer")
                 {
-                    stateMachine.ChangeState(new DefaultPlayer(this, animator));
-                    animator.SetBool("isAiming", false);
+                    // TODO: camController.SetCamTarget(Ref_CamDefault.transform.position);
 
                     if (LerpCamera)
                     {
-                        camController.SetTargetCameraPos(3, new Vector3(0, 1.5f, 0));
+                        camController.SetTargetCameraPos(defCamDist, defOffset);
                     }
-                    else camController.SetCameraPos(3, new Vector3(0, 1.5f, 0));
+                    else camController.SetPos(defCamDist, defOffset);
+
+                    stateMachine.ChangeState(new DefaultPlayer(this, animator));
+                    animator.SetBool("isAiming", false);
 
                     //Debug.Log("StateMachine: Right Mouse NOT Pressed");
                 }
@@ -175,7 +187,7 @@ public class PlayerController : MonoBehaviour {
 
     public void ToggleReticle()
     {
-        Reticle.gameObject.SetActive(!Reticle.gameObject.activeSelf);
+        Reticle.gameObject.GetComponent<LerpMatAlpha>().ToggleVisible();
     }
 
     public void IsHoldingObj(bool newState)

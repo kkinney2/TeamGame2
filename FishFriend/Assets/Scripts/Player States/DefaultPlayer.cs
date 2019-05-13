@@ -109,6 +109,22 @@ public class DefaultPlayer : IState
         moveDirection = moveDirection * speed;
         moveDirection.y = moveY;
 
+        // TODO: Walking Backwards
+        if (owner.gameObject.GetComponent<CharacterController>().velocity.magnitude > 0)
+        {
+            animator.SetBool("isWalking", true);
+            if (false)
+            {
+                // TODO: Determine when Character Walking backwards
+                animator.SetBool("isWalkingBackwards", true);
+            }
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isWalkingBackwards", false);
+        }
+
         // **----------------------------------------------------------------------------->>
 
 

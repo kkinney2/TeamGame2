@@ -62,7 +62,6 @@ public class Aiming : IState
         {
             animator.SetBool("isThrowing", true);
             Throw();
-            Exit();
         }
 
         // **----------------------------------------------------------------------------->>
