@@ -15,6 +15,8 @@ public class ThirdPersonCamera : MonoBehaviour
     Vector3 rotationSmoothVelocity;
     Vector3 currentRotation;
 
+    Coroutine currentCoroutine;
+
     float yaw;
     float pitch;
 
@@ -76,23 +78,29 @@ public class ThirdPersonCamera : MonoBehaviour
 
     public void SetTargetCameraPos(float distToTarget, Vector3 newOffset)
     {
-        StartCoroutine(LerpCamera(distToTarget, newOffset));
+        if (currentCoroutine != null)
+        {
+            StopCoroutine(currentCoroutine);
+        }
+        currentCoroutine = StartCoroutine(LerpCamera(distToTarget, newOffset));
     }
 
     IEnumerator LerpCamera(float newDistToTarget, Vector3 newOffset)
     {
-        StopCoroutine("LerpCamera");
+        //Debug.Log("LerpCamera Coroutine Started");
+
         float t = 0;
         float tempDist;
+        float rounder = 10000f;
         Vector3 tempOffset;
         while (true)
         {
-            tempDist = Mathf.Round(Mathf.Lerp(distanceFromTarget * 1000f, newDistToTarget * 1000f, t)) / 1000f;
+            tempDist = Mathf.Round(Mathf.Lerp(distanceFromTarget * rounder, newDistToTarget * rounder, t)) / rounder;
             tempOffset = new Vector3
                 (
-                    Mathf.Round(Mathf.Lerp(offset.x * 1000f, newOffset.x * 1000f, t)) / 1000f,
-                    Mathf.Round(Mathf.Lerp(offset.y * 1000f, newOffset.y * 1000f, t)) / 1000f,
-                    Mathf.Round(Mathf.Lerp(offset.z * 1000f, newOffset.z * 1000f, t)) / 1000f
+                    Mathf.Round(Mathf.Lerp(offset.x * rounder, newOffset.x * rounder, t)) / rounder,
+                    Mathf.Round(Mathf.Lerp(offset.y * rounder, newOffset.y * rounder, t)) / rounder,
+                    Mathf.Round(Mathf.Lerp(offset.z * rounder, newOffset.z * rounder, t)) / rounder
                 );
 
             t += 0.01f;
@@ -109,8 +117,9 @@ public class ThirdPersonCamera : MonoBehaviour
 
             SetCameraPos(tempDist, tempOffset );
 
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForEndOfFrame();
         }
+        //Debug.Log("LerpCamera Coroutine Ended");
         yield break;
     }
 }

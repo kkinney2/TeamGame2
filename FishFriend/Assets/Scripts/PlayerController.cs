@@ -30,13 +30,15 @@ public class PlayerController : MonoBehaviour {
         if (CameraObj != null)
         {
             camController = CameraObj.GetComponent<ThirdPersonCamera>();
+            
         }
         else
         {
             camController = Camera.main.GetComponent<ThirdPersonCamera>();
         }
 
-        
+        camController.target = transform;
+
         probeController = Probe.GetComponent<ProbeBehavior>();
         charController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
@@ -132,10 +134,9 @@ public class PlayerController : MonoBehaviour {
 
             if (Input.GetMouseButton(1) == true)
             {
+                //Debug.Log("StateMachine: Right Mouse Pressed");
                 if ( currentState != "Aiming")
                 {
-                    stateMachine.ChangeState(new Aiming(this, animator));
-                    animator.SetBool("isAiming", true);
 
                     // TODO: Hardcoded camera pos values
                     if (LerpCamera)
@@ -144,21 +145,26 @@ public class PlayerController : MonoBehaviour {
                     }
                     else camController.SetCameraPos(2, new Vector3(0, 2, 0));
 
-                    Debug.Log("StateMachine: Right Mouse Pressed");
+                    stateMachine.ChangeState(new Aiming(this, animator));
+                    animator.SetBool("isAiming", true);
                 }
             }
-            if (Input.GetMouseButton(1) == false && currentState != "DefaultPlayer")
-            {
-                stateMachine.ChangeState(new DefaultPlayer(this, animator));
-                animator.SetBool("isAiming", false);
 
-                if (LerpCamera)
+            if (Input.GetMouseButton(1) == false)
+            {
+                if (currentState != "DefaultPlayer")
                 {
-                    camController.SetTargetCameraPos(3, new Vector3(0, 1.5f, 0));
+                    stateMachine.ChangeState(new DefaultPlayer(this, animator));
+                    animator.SetBool("isAiming", false);
+
+                    if (LerpCamera)
+                    {
+                        camController.SetTargetCameraPos(3, new Vector3(0, 1.5f, 0));
+                    }
+                    else camController.SetCameraPos(3, new Vector3(0, 1.5f, 0));
+
+                    //Debug.Log("StateMachine: Right Mouse NOT Pressed");
                 }
-                else camController.SetCameraPos(3, new Vector3(0, 1.5f, 0));
-               
-                Debug.Log("StateMachine: Right Mouse Released");
             }
 
             // **----------------------------------------------------------------------------->>
