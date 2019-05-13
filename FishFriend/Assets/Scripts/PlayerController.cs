@@ -4,22 +4,29 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    [Header("(On) Camera")]
     public GameObject CameraObj;
     public GameObject Reticle;
     public GameObject Probe;
+
+    [Header("Object References")]
     public GameObject Ref_PickUpPos;
     public GameObject Ref_CamDefault;
-    public GameObject Ref_CamAiming;
     public GameObject UI_Toggle;
-    public float throwPower;
-    public bool LerpCamera = false;
-    public Vector3 AdditionalThrowHeight;
 
+    public float throwPower;
+
+    [Header("Default Camera Settings")]
     public Vector3 defOffset = new Vector3(0, 0, 0);
     public float defCamDist = 10f;
 
+    [Header("Aiming Camera Settings")]
     public Vector3 aimingOffset = new Vector3(2, 0, 0);
     public float camAimingDist = 7f;
+
+    [Header("Additional Settings")]
+    public bool LerpCamera = false;
+    public Vector3 AdditionalThrowHeight;
 
     bool isHoldingObj = false;
     StateMachine stateMachine;
@@ -46,6 +53,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         camController.SetTarget(Ref_CamDefault.transform);
+        camController.SetTargetCameraPos(defCamDist, defOffset);
         //camController.camTargetRef = Ref_CamDefault.transform;
         //camController.camAimingTargetRef = Ref_CamAiming.transform;
 
