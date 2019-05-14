@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PickupBehavior : MonoBehaviour {
 
+    public float distToGround;
+
     bool isHeld = false;
+    bool isGrounded = false;
     Rigidbody rb;
 
 	// Use this for initialization
@@ -21,11 +24,11 @@ public class PickupBehavior : MonoBehaviour {
 
         if (isHeld)
         {
-            rb.constraints = RigidbodyConstraints.FreezeAll;
+            //rb.constraints = RigidbodyConstraints.FreezeAll;
         }
         else
         {
-            rb.constraints = RigidbodyConstraints.None;
+            //rb.constraints = RigidbodyConstraints.None;
 
         }
 
@@ -35,6 +38,11 @@ public class PickupBehavior : MonoBehaviour {
     public void ToggleBeingHeld()
     {
         isHeld = !isHeld;
+    }
+
+    public bool IsHeld()
+    {
+        return isHeld;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -54,8 +62,29 @@ public class PickupBehavior : MonoBehaviour {
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
+    }
+
     public void Throw(Vector3 direction, float power)
     {
         rb.AddForce(direction * power, ForceMode.Impulse/*Or ForceMode.ChangeVelocity*/);
+    }
+
+    public bool IsGrounded()
+    {
+        return isGrounded;
     }
 }

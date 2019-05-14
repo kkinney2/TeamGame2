@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    public GameObject ThrowingDogo;
+    public GameObject AIDogo;
+
     [Header("(On) Camera")]
     public GameObject CameraObj;
     public GameObject Reticle;
@@ -35,7 +38,10 @@ public class PlayerController : MonoBehaviour {
     ThirdPersonCamera camController;
     CharacterController charController;
     ProbeBehavior probeController;
+    PickupBehavior pickupBehaviour;
+    DogBehavior dogBehaviour;
     GameObject heldObj;
+    
 
     // Use this for initialization
     void Start () {
@@ -60,6 +66,8 @@ public class PlayerController : MonoBehaviour {
         probeController = Probe.GetComponent<ProbeBehavior>();
         charController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        dogBehaviour = AIDogo.GetComponent<DogBehavior>();
+        pickupBehaviour = ThrowingDogo.GetComponent<PickupBehavior>();
 
 
         // Give stateMachine a state so that coroutine StateSwitch has something
@@ -67,6 +75,7 @@ public class PlayerController : MonoBehaviour {
         stateMachine.ChangeState(new DefaultPlayer(this, animator));
 
         StartCoroutine(StateSwitch(stateMachine));
+        StartCoroutine(DogSwitcher());
 
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -111,14 +120,16 @@ public class PlayerController : MonoBehaviour {
             {
                 animator.SetBool("shouldPickup", true);
                 heldObj = probeController.GetObj();
+
+                if (heldObj.CompareTag("Borko"))
+                {
+                    heldObj = ThrowingDogo;
+                }
+
                 heldObj.transform.SetParent(gameObject.transform);
-                // When thrown set:
-                // heldObj.transform.parent = null;
                 heldObj.GetComponent<PickupBehavior>().ToggleBeingHeld();
                 isHoldingObj = true;
-                UI_Toggle.gameObject.SetActive(false);
-                
-                animator.SetBool("shouldPickup", false);
+                UI_Toggle.gameObject.SetActive(false);   
             }
         }
 
@@ -134,9 +145,42 @@ public class PlayerController : MonoBehaviour {
             heldObj.transform.position = Ref_PickUpPos.transform.position;
             heldObj.transform.rotation = Ref_PickUpPos.transform.rotation;
             animator.SetBool("isHolding", true);
+            animator.SetBool("shouldPickup", false);
+        }
+        else
+        {
+            animator.SetBool("isHolding", false);
         }
 
         // **----------------------------------------------------------------------------->>
+    }
+
+    IEnumerator DogSwitcher()
+    {
+        int t = 0;   
+            
+        while (true)
+        {
+            if (isHoldingObj)
+            {
+                dogBehaviour.Warp(Vector3.zero);
+                AIDogo.SetActive(false);
+            }
+
+            if ( pickupBehaviour.IsGrounded() && t > 3 && !AIDogo.activeSelf )
+            {
+                AIDogo.SetActive(true);
+                dogBehaviour.Warp(ThrowingDogo.transform.position);
+                AIDogo.transform.rotation = ThrowingDogo.transform.rotation;
+                ThrowingDogo.transform.position = Vector3.zero;
+                t = 0;
+            }
+
+            yield return new WaitForSeconds(1);
+            t++;
+        }
+
+        yield return new WaitForEndOfFrame();
     }
 
     IEnumerator StateSwitch(StateMachine stateMachine)

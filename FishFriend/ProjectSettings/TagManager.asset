@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Pickup
   - Probe
+  - Borko
+  - Ground
   layers:
   - Default
   - TransparentFX
