@@ -17,11 +17,13 @@ public class DogBehavior : PickupBehavior {
         agent.stoppingDistance = StoppingRadius;
 
         agent.SetDestination(Player.transform.position);
+        
     }
 
     private void Update()
     {
         agent.SetDestination(Player.transform.position);
+        Debug.Log("Destination: " + agent.destination);
     }
 
     public void Warp(Vector3 newPos)
@@ -33,4 +35,5 @@ public class DogBehavior : PickupBehavior {
     {
         agent.enabled = !agent.enabled;
     }
+
 }
