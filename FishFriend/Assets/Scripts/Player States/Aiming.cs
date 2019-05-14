@@ -95,6 +95,7 @@ public class Aiming : IState
         PickupBehavior objPickup = heldObj.GetComponent<PickupBehavior>();
 
         owner.IsHoldingObj(false);
+        owner.probeController.SetObj(null);
         // De-child's the held obj
         heldObj.transform.SetParent(null);
         // Unlocks the rotation and position

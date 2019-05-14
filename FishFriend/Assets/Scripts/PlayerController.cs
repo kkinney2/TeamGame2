@@ -37,7 +37,8 @@ public class PlayerController : MonoBehaviour {
     Animator animator;
     ThirdPersonCamera camController;
     CharacterController charController;
-    ProbeBehavior probeController;
+    [HideInInspector]
+    public ProbeBehavior probeController;
     PickupBehavior pickupBehaviour;
     DogBehavior dogBehaviour;
     GameObject heldObj;
