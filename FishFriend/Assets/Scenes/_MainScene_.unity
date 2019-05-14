@@ -102,8 +102,8 @@ NavMeshSettings:
     agentHeight: 1.5
     agentSlope: 45
     agentClimb: 1.1
-    ledgeDropHeight: 0
-    maxJumpAcrossDistance: 0
+    ledgeDropHeight: 50
+    maxJumpAcrossDistance: 1
     minRegionArea: 2
     manualCellSize: 0
     cellSize: 0.6666667
@@ -399,6 +399,10 @@ Prefab:
       propertyPath: AnimDogo
       value: 
       objectReference: {fileID: 378941486}
+    - target: {fileID: 1980673159884178, guid: 30d5ba72d6fdc4c43a707debc2ed15b6, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30d5ba72d6fdc4c43a707debc2ed15b6, type: 2}
   m_IsPrefabAsset: 0
@@ -997,7 +1001,7 @@ GameObject:
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 40
   m_IsActive: 1
 --- !u!154 &1300797134
 TerrainCollider:
@@ -1169,6 +1173,10 @@ Prefab:
     - target: {fileID: 4586983229593098, guid: 1e99bf37cb608cb41ac518f5d6d1cde1, type: 2}
       propertyPath: m_RootOrder
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1850942165289412, guid: 1e99bf37cb608cb41ac518f5d6d1cde1, type: 2}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e99bf37cb608cb41ac518f5d6d1cde1, type: 2}
