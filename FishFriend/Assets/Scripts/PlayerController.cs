@@ -114,6 +114,7 @@ public class PlayerController : MonoBehaviour {
             if (!UI_Toggle.gameObject.activeSelf)
             {
                 UI_Toggle.gameObject.SetActive(true);
+                Debug.Log("Pickup UI turned on");
             }
 
             if (Input.GetKeyDown(KeyCode.E))
@@ -129,7 +130,7 @@ public class PlayerController : MonoBehaviour {
                 heldObj.transform.SetParent(gameObject.transform);
                 heldObj.GetComponent<PickupBehavior>().ToggleBeingHeld();
                 isHoldingObj = true;
-                UI_Toggle.gameObject.SetActive(false);   
+
             }
         }
 
@@ -137,7 +138,12 @@ public class PlayerController : MonoBehaviour {
         // is no object to pickup
         if (probeController.GetObj() == null || IsHoldingObj())
         {
-            UI_Toggle.gameObject.SetActive(false);
+            if (UI_Toggle.gameObject.activeSelf)
+            {
+                UI_Toggle.gameObject.SetActive(false);
+                Debug.Log("Pickup UI turned off");
+            }
+            
         }
 
         if (IsHoldingObj())
