@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 136763832815635720}
   - component: {fileID: 114030142670257790}
   - component: {fileID: 54401325438082650}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Temp_Borko_Anim
   m_TagString: Pickup
   m_Icon: {fileID: 0}

@@ -418,7 +418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 10
   distanceFromTarget: 7
-  pitchMinMax: {x: -30, y: 85}
+  pitchMinMax: {x: -30, y: 110}
   acceleration: 0.12
   InvertPitch: 0
 --- !u!222 &222703192645967786

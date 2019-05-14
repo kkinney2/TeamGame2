@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class DogBehavior : PickupBehavior {
 
     public GameObject Player;
-    public GameObject AnimDogo;
     public float StoppingRadius;
 
     NavMeshAgent agent;
