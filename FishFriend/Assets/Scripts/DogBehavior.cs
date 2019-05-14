@@ -29,4 +29,8 @@ public class DogBehavior : PickupBehavior {
         agent.Warp(newPos);
     }
 
+    public void ToggleEnabledNav()
+    {
+        agent.enabled = !agent.enabled;
+    }
 }

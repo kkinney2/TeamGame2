@@ -76,11 +76,26 @@ public class Aiming : IState
 
     void Throw()
     {
+        //Gets Held Obj
+        GameObject heldObj = owner.GetHeldObj();
+
         // <<-----------------------------------------------------------------------------**
-        // Gets Held Obj, Determines Vector to Target, and Normalize that Vector
+        // Prepares Held Obj for Throwing and Throws Obj
+        // **----------------------------------------**
+        PickupBehavior objPickupBehaviour = heldObj.GetComponent<PickupBehavior>();
+
+        owner.IsHoldingObj(false);
+        owner.probeController.SetObj(null);
+        // De-child's the held obj
+        heldObj.transform.SetParent(null);
+        // Unlocks the rotation and position
+        objPickupBehaviour.ToggleBeingHeld();
+
+        // <<-----------------------------------------------------------------------------**
+        // Determines Vector to Target, and Normalize that Vector
         // **----------------------------------------**
 
-        GameObject heldObj = owner.GetHeldObj();
+       
 
         Vector3 targetDir = (owner.Reticle.transform.position + owner.AdditionalThrowHeight) - heldObj.transform.position;
         //targetDir = targetDir.normalized;
@@ -88,20 +103,7 @@ public class Aiming : IState
 
         // **----------------------------------------------------------------------------->>
 
-
-        // <<-----------------------------------------------------------------------------**
-        // Prepares Held Obj for Throwing and Throws Obj
-        // **----------------------------------------**
-        PickupBehavior objPickup = heldObj.GetComponent<PickupBehavior>();
-
-        owner.IsHoldingObj(false);
-        owner.probeController.SetObj(null);
-        // De-child's the held obj
-        heldObj.transform.SetParent(null);
-        // Unlocks the rotation and position
-        objPickup.ToggleBeingHeld();
-
-        objPickup.Throw(targetDir, owner.throwPower);
+        objPickupBehaviour.Throw(targetDir, owner.throwPower);
 
         // **----------------------------------------------------------------------------->>
 

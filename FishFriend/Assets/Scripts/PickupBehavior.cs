@@ -17,7 +17,11 @@ public class PickupBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if (isHeld)
+        {
+            rb.detectCollisions = false;
+        }
+        else rb.detectCollisions = true;
     }
 
     public void ToggleBeingHeld()
@@ -61,6 +65,8 @@ public class PickupBehavior : MonoBehaviour {
         {
             isGrounded = false;
         }
+
+        Debug.Log("Pickup hit: " + collision.gameObject.name);
     }
 
     public void Throw(Vector3 direction, float power)

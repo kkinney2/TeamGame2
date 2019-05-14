@@ -151,6 +151,7 @@ public class PlayerController : MonoBehaviour {
         {
             heldObj.transform.position = Ref_PickUpPos.transform.position;
             heldObj.transform.rotation = Ref_PickUpPos.transform.rotation;
+            heldObj.GetComponent<Rigidbody>().velocity = Vector3.zero;
             animator.SetBool("isHolding", true);
             animator.SetBool("shouldPickup", false);
         }
@@ -176,10 +177,13 @@ public class PlayerController : MonoBehaviour {
 
             if ( pickupBehaviour.IsGrounded() && t > 3 && !AIDogo.activeSelf )
             {
-                AIDogo.SetActive(true);
-                dogBehaviour.Warp(ThrowingDogo.transform.position);
+                //dogBehaviour.Warp(ThrowingDogo.transform.position);
+                AIDogo.transform.position = ThrowingDogo.transform.position;
                 AIDogo.transform.rotation = ThrowingDogo.transform.rotation;
+
+                AIDogo.SetActive(true);
                 ThrowingDogo.transform.position = Vector3.zero;
+                ThrowingDogo.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 t = 0;
             }
 
