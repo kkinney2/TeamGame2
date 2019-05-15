@@ -70,6 +70,7 @@ public class DefaultPlayer : IState
         if (Input.GetButton("Sprint") && charController.isGrounded)
         {
             speed = sprintSpeed;
+            animator.SetBool("isRunning", true);
         }
         else if (speed == sprintSpeed && !charController.isGrounded)
         {
@@ -78,6 +79,7 @@ public class DefaultPlayer : IState
         else
         {
             speed = moveSpeed;
+            animator.SetBool("isRunning", false);
         }
 
         // **----------------------------------------------------------------------------->>
