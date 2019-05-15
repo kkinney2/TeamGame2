@@ -10,6 +10,7 @@ public class DogBehavior : PickupBehavior {
 
     NavMeshAgent agent; // Has velocity var
     Animator animator;
+    
 
 
     // Use this for initialization

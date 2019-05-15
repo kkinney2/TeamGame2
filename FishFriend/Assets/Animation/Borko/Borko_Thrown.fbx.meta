@@ -1,0 +1,197 @@
+fileFormatVersion: 2
+guid: efc7e7c0c995a0f438691f39d34b0f48
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Borko
+    100002: //RootNode
+    100004: Eyes1
+    100006: head_joint
+    100008: jaw_bottom
+    100010: jaw_bottom_end
+    100012: jaw_start
+    100014: jaw_top
+    100016: jaw_top_end
+    100018: l_back_controller
+    100020: l_back_heel
+    100022: l_back_leg
+    100024: l_back_toe
+    100026: l_ear_base
+    100028: l_ear_controller
+    100030: l_ear_end
+    100032: l_ear_first_bend
+    100034: l_ear_second_bend
+    100036: l_front_controller
+    100038: l_front_heel
+    100040: l_front_leg
+    100042: l_front_toe
+    100044: Main_controller
+    100046: mouth_controller
+    100048: polySurface1
+    100050: polySurface2
+    100052: r_back_controller
+    100054: r_back_heel
+    100056: r_back_leg1
+    100058: r_back_toe
+    100060: r_ear_base
+    100062: r_ear_controller
+    100064: r_ear_end
+    100066: r_ear_first_bend
+    100068: r_ear_second_bend
+    100070: r_front_controller
+    100072: r_front_heer
+    100074: r_front_reg
+    100076: r_front_toe
+    100078: Root
+    100080: rotate
+    100082: rotate 1
+    100084: rotate 2
+    100086: rotate 3
+    100088: tail_base
+    100090: tail_controller
+    100092: tail_end
+    100094: tail_middle
+    100096: transform4
+    400000: Borko
+    400002: //RootNode
+    400004: Eyes1
+    400006: head_joint
+    400008: jaw_bottom
+    400010: jaw_bottom_end
+    400012: jaw_start
+    400014: jaw_top
+    400016: jaw_top_end
+    400018: l_back_controller
+    400020: l_back_heel
+    400022: l_back_leg
+    400024: l_back_toe
+    400026: l_ear_base
+    400028: l_ear_controller
+    400030: l_ear_end
+    400032: l_ear_first_bend
+    400034: l_ear_second_bend
+    400036: l_front_controller
+    400038: l_front_heel
+    400040: l_front_leg
+    400042: l_front_toe
+    400044: Main_controller
+    400046: mouth_controller
+    400048: polySurface1
+    400050: polySurface2
+    400052: r_back_controller
+    400054: r_back_heel
+    400056: r_back_leg1
+    400058: r_back_toe
+    400060: r_ear_base
+    400062: r_ear_controller
+    400064: r_ear_end
+    400066: r_ear_first_bend
+    400068: r_ear_second_bend
+    400070: r_front_controller
+    400072: r_front_heer
+    400074: r_front_reg
+    400076: r_front_toe
+    400078: Root
+    400080: rotate
+    400082: rotate 1
+    400084: rotate 2
+    400086: rotate 3
+    400088: tail_base
+    400090: tail_controller
+    400092: tail_end
+    400094: tail_middle
+    400096: transform4
+    2100000: Borko
+    2100002: Eyes
+    2300000: polySurface1
+    2300002: polySurface2
+    3300000: polySurface1
+    3300002: polySurface2
+    4300000: Borko
+    4300002: polySurface1
+    4300004: polySurface2
+    7400000: Thrown
+    9500000: //RootNode
+    13700000: Borko
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

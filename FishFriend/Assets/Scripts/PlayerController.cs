@@ -47,7 +47,8 @@ public class PlayerController : MonoBehaviour {
     PickupBehavior pickupBehaviour;
     DogBehavior dogBehaviour;
     GameObject heldObj;
-    
+    AudioSource Sound_bark;
+
 
     // Use this for initialization
     void Start () {
@@ -74,6 +75,7 @@ public class PlayerController : MonoBehaviour {
         animator = GetComponent<Animator>();
         dogBehaviour = AIDogo.GetComponent<DogBehavior>();
         pickupBehaviour = ThrowingDogo.GetComponent<PickupBehavior>();
+        Sound_bark = GetComponent<AudioSource>();
 
 
         // Give stateMachine a state so that coroutine StateSwitch has something
@@ -184,6 +186,9 @@ public class PlayerController : MonoBehaviour {
 
             if ( pickupBehaviour.IsGrounded() && isThrown && t > 3 && !AIDogo.activeSelf )
             {
+                Sound_bark.time = 0.4f;
+                Sound_bark.Play();
+                Sound_bark.SetScheduledEndTime(AudioSettings.dspTime + (0.7f - 0.4f));
                 //dogBehaviour.Warp(ThrowingDogo.transform.position);
                 AIDogo.transform.position = ThrowingDogo.transform.position;
                 AIDogo.transform.rotation = ThrowingDogo.transform.rotation;
