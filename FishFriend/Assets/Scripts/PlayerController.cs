@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour {
                 //dogBehaviour.Warp(ThrowingDogo.transform.position);
                 AIDogo.transform.position = ThrowingDogo.transform.position;
                 AIDogo.transform.rotation = ThrowingDogo.transform.rotation;
-
+                ThrowingDogo.transform.rotation = AIDogo.transform.rotation;
                 AIDogo.SetActive(true);
                 ThrowingDogo.transform.position = Vector3.zero;
                 ThrowingDogo.GetComponent<Rigidbody>().velocity = Vector3.zero;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -113,124 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: cb8a58fa597c2d245bbb3b517f3f14f1, type: 2}
---- !u!1001 &19816031
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4268218401708196, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -12.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4268218401708196, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4268218401708196, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4268218401708196, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4268218401708196, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4268218401708196, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4268218401708196, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4268218401708196, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 114702227292503184, guid: d0fb26047f7c99245ac8b04a831dcda6,
-        type: 2}
-      propertyPath: ThrowingDogo
-      value: 
-      objectReference: {fileID: 378941486}
-    - target: {fileID: 114702227292503184, guid: d0fb26047f7c99245ac8b04a831dcda6,
-        type: 2}
-      propertyPath: AIDogo
-      value: 
-      objectReference: {fileID: 828964495}
-    - target: {fileID: 114702227292503184, guid: d0fb26047f7c99245ac8b04a831dcda6,
-        type: 2}
-      propertyPath: CameraObj
-      value: 
-      objectReference: {fileID: 534669902}
-    - target: {fileID: 114702227292503184, guid: d0fb26047f7c99245ac8b04a831dcda6,
-        type: 2}
-      propertyPath: Reticle
-      value: 
-      objectReference: {fileID: 959666579}
-    - target: {fileID: 114702227292503184, guid: d0fb26047f7c99245ac8b04a831dcda6,
-        type: 2}
-      propertyPath: Probe
-      value: 
-      objectReference: {fileID: 1196594301}
-    - target: {fileID: 114702227292503184, guid: d0fb26047f7c99245ac8b04a831dcda6,
-        type: 2}
-      propertyPath: Ref_PickUpPos
-      value: 
-      objectReference: {fileID: 54172480}
-    - target: {fileID: 114702227292503184, guid: d0fb26047f7c99245ac8b04a831dcda6,
-        type: 2}
-      propertyPath: Ref_CamDefault
-      value: 
-      objectReference: {fileID: 715954641}
-    - target: {fileID: 114702227292503184, guid: d0fb26047f7c99245ac8b04a831dcda6,
-        type: 2}
-      propertyPath: UI_Toggle
-      value: 
-      objectReference: {fileID: 192370386}
-    - target: {fileID: 114702227292503184, guid: d0fb26047f7c99245ac8b04a831dcda6,
-        type: 2}
-      propertyPath: JumpHeight
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 143988664987649454, guid: d0fb26047f7c99245ac8b04a831dcda6,
-        type: 2}
-      propertyPath: m_Height
-      value: 2.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 143988664987649454, guid: d0fb26047f7c99245ac8b04a831dcda6,
-        type: 2}
-      propertyPath: m_Radius
-      value: 0.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 143988664987649454, guid: d0fb26047f7c99245ac8b04a831dcda6,
-        type: 2}
-      propertyPath: m_Center.y
-      value: 1.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 143988664987649454, guid: d0fb26047f7c99245ac8b04a831dcda6,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114702227292503184, guid: d0fb26047f7c99245ac8b04a831dcda6,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114702227292503184, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
-  m_SourcePrefab: {fileID: 100100000, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
-  m_IsPrefabAsset: 0
---- !u!1 &54172480 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1754001504469244, guid: 98d78ffe51486da498f52b086edc91f7,
-    type: 2}
-  m_PrefabInternal: {fileID: 1393334209}
 --- !u!1001 &96568264
 Prefab:
   m_ObjectHideFlags: 0
@@ -666,49 +548,88 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1184600631095094, guid: 98d39d65ec2e6ec4ba276112a48e943b,
     type: 2}
   m_PrefabInternal: {fileID: 439574904}
---- !u!1 &715954641 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1927905755378544, guid: 98d78ffe51486da498f52b086edc91f7,
-    type: 2}
-  m_PrefabInternal: {fileID: 1393334209}
 --- !u!1 &727874050 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1911745616028136, guid: d0fb26047f7c99245ac8b04a831dcda6,
     type: 2}
-  m_PrefabInternal: {fileID: 19816031}
---- !u!114 &727874051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 727874050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef1986c491dff0046b0dce9def50cba2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ThrowingDogo: {fileID: 378941486}
-  AIDogo: {fileID: 828964495}
-  CameraObj: {fileID: 534669902}
-  Reticle: {fileID: 959666579}
-  Probe: {fileID: 1196594301}
-  Ref_PickUpPos: {fileID: 54172480}
-  Ref_CamDefault: {fileID: 715954641}
-  UI_Toggle: {fileID: 192370386}
-  throwPower: 3
-  defOffset: {x: 0, y: 1, z: 0}
-  defCamDist: 7
-  aimingOffset: {x: 0, y: 1.5, z: 0}
-  camAimingDist: 5
-  LerpCamera: 1
-  AdditionalThrowHeight: {x: 0, y: 5, z: 0}
-  JumpHeight: 10
-  probeController: {fileID: 0}
+  m_PrefabInternal: {fileID: 866997348}
 --- !u!1 &828964495 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1980673159884178, guid: 30d5ba72d6fdc4c43a707debc2ed15b6,
     type: 2}
   m_PrefabInternal: {fileID: 140289488}
+--- !u!1001 &866997348
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4268218401708196, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -12.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268218401708196, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268218401708196, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268218401708196, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268218401708196, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268218401708196, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268218401708196, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268218401708196, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114462780461083236, guid: d0fb26047f7c99245ac8b04a831dcda6,
+        type: 2}
+      propertyPath: ThrowingDogo
+      value: 
+      objectReference: {fileID: 378941486}
+    - target: {fileID: 114462780461083236, guid: d0fb26047f7c99245ac8b04a831dcda6,
+        type: 2}
+      propertyPath: AIDogo
+      value: 
+      objectReference: {fileID: 828964495}
+    - target: {fileID: 114462780461083236, guid: d0fb26047f7c99245ac8b04a831dcda6,
+        type: 2}
+      propertyPath: CameraObj
+      value: 
+      objectReference: {fileID: 534669902}
+    - target: {fileID: 114462780461083236, guid: d0fb26047f7c99245ac8b04a831dcda6,
+        type: 2}
+      propertyPath: Reticle
+      value: 
+      objectReference: {fileID: 959666579}
+    - target: {fileID: 114462780461083236, guid: d0fb26047f7c99245ac8b04a831dcda6,
+        type: 2}
+      propertyPath: Probe
+      value: 
+      objectReference: {fileID: 1196594301}
+    - target: {fileID: 114462780461083236, guid: d0fb26047f7c99245ac8b04a831dcda6,
+        type: 2}
+      propertyPath: UI_Toggle
+      value: 
+      objectReference: {fileID: 192370386}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d0fb26047f7c99245ac8b04a831dcda6, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &959666579 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1873845658776134, guid: 98d39d65ec2e6ec4ba276112a48e943b,

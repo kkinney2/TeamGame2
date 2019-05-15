@@ -40,19 +40,6 @@ public class DefaultPlayer : IState
         horizontalMove = Input.GetAxis("Horizontal");
         verticalMove = Input.GetAxis("Vertical");
 
-        // Determine if/what pickup is being looked at
-        CheckForPickUps();
-
-        if (lookingAtPickUp)
-        {
-            // Toggle UI to signify PickUp
-
-            if (Input.GetKeyUp(KeyCode.E))
-            {
-                PickUpObject(targetPickUp);
-            }
-        }
-
         Movement();
     }
 
@@ -141,20 +128,5 @@ public class DefaultPlayer : IState
         charController.Move(moveDirection * Time.deltaTime);
 
         // **----------------------------------------------------------------------------->>
-    }
-
-    void CheckForPickUps()
-    {
-
-    }
-
-    void PickUpObject(GameObject targetObj)
-    {
-
-    }
-
-    void ThrowPickUp()
-    {
-
     }
 }
