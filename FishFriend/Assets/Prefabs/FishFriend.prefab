@@ -9328,6 +9328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1986c491dff0046b0dce9def50cba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isThrown: 0
   ThrowingDogo: {fileID: 0}
   AIDogo: {fileID: 0}
   CameraObj: {fileID: 0}
