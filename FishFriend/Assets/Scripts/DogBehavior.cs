@@ -10,14 +10,14 @@ public class DogBehavior : PickupBehavior {
 
     NavMeshAgent agent;
     Animator animator;
-    Rigidbody rb;
+    Rigidbody dogoRB;
 
     // Use this for initialization
     void Start() {
 
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
+        dogoRB = gameObject.GetComponent<Rigidbody>();
 
         agent.stoppingDistance = StoppingRadius;
 
@@ -27,12 +27,27 @@ public class DogBehavior : PickupBehavior {
 
     private void Update()
     {
+        animator.SetBool("isRunning", false);
+        Debug.Log("Dog Velocity: " + agent.velocity);
+
         agent.SetDestination(Player.transform.position);
-        if (IsGrounded() && rb.velocity.magnitude > 0f)
+        if (IsGrounded() && agent.velocity.magnitude > 0f)
         {
             animator.SetBool("isRunning", true);
         }
-        else animator.SetBool("isRunning", false);
+
+
+        if (IsGrounded())
+        {
+            Debug.Log("Running while grounded");
+            animator.SetBool("isRunning", true);
+        }
+
+        if (agent.velocity.magnitude > 0f)
+        {
+            Debug.Log("Running while isMoving");
+            animator.SetBool("isRunning", true);
+        }
         //Debug.Log("Destination: " + agent.destination);
     }
 
