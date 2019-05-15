@@ -104,6 +104,7 @@ public class Aiming : IState
         // **----------------------------------------------------------------------------->>
 
         objPickupBehaviour.Throw(targetDir, owner.throwPower);
+        owner.isThrown = true;
 
         // **----------------------------------------------------------------------------->>
 

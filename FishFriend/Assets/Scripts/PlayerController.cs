@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    [HideInInspector]
+    public bool isThrown = false;
+
     public GameObject ThrowingDogo;
     public GameObject AIDogo;
 
@@ -33,6 +36,7 @@ public class PlayerController : MonoBehaviour {
     public float JumpHeight;
 
     bool isHoldingObj = false;
+    
     StateMachine stateMachine;
     StateMachine animMachine;
     Animator animator;
@@ -168,7 +172,7 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator DogSwitcher()
     {
-        int t = 0;   
+        float t = 0;   
             
         while (true)
         {
@@ -178,7 +182,7 @@ public class PlayerController : MonoBehaviour {
                 AIDogo.SetActive(false);
             }
 
-            if ( pickupBehaviour.IsGrounded() && t > 3 && !AIDogo.activeSelf )
+            if ( pickupBehaviour.IsGrounded() && isThrown && t > 3 && !AIDogo.activeSelf )
             {
                 //dogBehaviour.Warp(ThrowingDogo.transform.position);
                 AIDogo.transform.position = ThrowingDogo.transform.position;
@@ -188,10 +192,15 @@ public class PlayerController : MonoBehaviour {
                 ThrowingDogo.transform.position = Vector3.zero;
                 ThrowingDogo.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 t = 0;
+                isThrown = false;
             }
 
-            yield return new WaitForSeconds(1);
-            t++;
+            yield return new WaitForEndOfFrame();
+            if (isThrown)
+            {
+                t += Time.deltaTime;
+            }
+            
         }
 
         yield return new WaitForEndOfFrame();
