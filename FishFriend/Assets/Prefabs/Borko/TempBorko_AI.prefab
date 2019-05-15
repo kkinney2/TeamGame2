@@ -144,7 +144,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distToGround: 0
   Player: {fileID: 0}
-  AnimDogo: {fileID: 0}
   StoppingRadius: 5
 --- !u!136 &136095349107151504
 CapsuleCollider:
