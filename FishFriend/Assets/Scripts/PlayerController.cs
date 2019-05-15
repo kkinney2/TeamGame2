@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour {
     [Header("Additional Settings")]
     public bool LerpCamera = false;
     public Vector3 AdditionalThrowHeight;
+    public float JumpHeight;
 
     bool isHoldingObj = false;
     StateMachine stateMachine;
@@ -110,6 +111,8 @@ public class PlayerController : MonoBehaviour {
         // Pickup Section
         // **----------------------------------------**
 
+        animator.SetBool("shouldPickup", false);
+
         if (probeController.GetObj() != null && !IsHoldingObj())
         {
             if (!UI_Toggle.gameObject.activeSelf)
@@ -153,7 +156,7 @@ public class PlayerController : MonoBehaviour {
             heldObj.transform.rotation = Ref_PickUpPos.transform.rotation;
             heldObj.GetComponent<Rigidbody>().velocity = Vector3.zero;
             animator.SetBool("isHolding", true);
-            animator.SetBool("shouldPickup", false);
+            
         }
         else
         {
