@@ -23,7 +23,7 @@ public class DogBehavior : PickupBehavior {
     private void Update()
     {
         agent.SetDestination(Player.transform.position);
-        Debug.Log("Destination: " + agent.destination);
+        //Debug.Log("Destination: " + agent.destination);
     }
 
     public void Warp(Vector3 newPos)

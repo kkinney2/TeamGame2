@@ -30,6 +30,7 @@ public class DefaultPlayer : IState
     {
         Debug.Log("Entering DefaultPlayer State");
         charController = owner.GetComponent<CharacterController>();
+        jumpSpeed = owner.JumpHeight;
     }
 
     public void Execute()
@@ -92,6 +93,8 @@ public class DefaultPlayer : IState
             {
                 moveDirection.y = jumpSpeed;
                 animator.SetBool("isJumping", true);
+                animator.SetBool("isWalking", false);
+                animator.SetBool("isRunning", false);
             }
         }
 
